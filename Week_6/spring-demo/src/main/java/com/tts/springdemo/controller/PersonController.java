@@ -34,6 +34,11 @@ public class PersonController {
         return personRepository.findById(id);
     }
 
+    //-------------------------------------------------------------------------------------------------------
+    // BELOW WE ARE UTILIZING REQUEST PARAMETERS WHICH ALLOWS US TO PERFORM SEARCHES IN A STANDARDIZED FASHION
+    // WE QUERY THE DATABASE USING SPECIFIC VALUES AN RESOLVE THE CODE
+    //-------------------------------------------------------------------------------------------------------
+
     // Using this example URL ** http://localhost:8080/person/get/persons?id=1&id=3 **
     // you can get the all the data of objects with IDs 1 and 3
     // You can also use this URL with commas to separate ID values ** http://localhost:8080/person/get/persons?id=1,2,3 **
