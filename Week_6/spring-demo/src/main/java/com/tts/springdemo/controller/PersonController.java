@@ -35,11 +35,20 @@ public class PersonController {
     }
 
     // Using this example URL ** http://localhost:8080/person/get/persons?id=1&id=3 **
-    // You can get the all the data of objects with IDs 1 and 3
+    // you can get the all the data of objects with IDs 1 and 3
     // You can also use this URL with commas to separate ID values ** http://localhost:8080/person/get/persons?id=1,2,3 **
     @GetMapping("get/persons")
     public Iterable<Person> getPersons (@RequestParam List<Long> id){
         return personRepository.findAllById(id);
     }
+
+    // Using this example URL ** http://localhost:8080/person/search?firstName=Donald **
+    // you can get all the data of an object identified by firstname
+    @GetMapping("/search")
+    public Iterable<Person> searchPersonByName(@RequestParam String firstName){
+        return personRepository.findAllByFirstName(firstName);
+    }
+
+
 
 }
