@@ -2,6 +2,7 @@ package com.tts.springdemo.controller;
 
 import com.tts.springdemo.model.Person;
 import com.tts.springdemo.repository.PersonRepository;
+import com.tts.springdemo.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,26 +14,38 @@ import java.util.Optional;
 public class PersonController {
 
     @Autowired
-    PersonRepository personRepository;
+    PersonService personService;
+
+    // To use the interface implementation we need to remove the @Autowired PersonRepository
+    // and add @Autowired PersonService from PersonServiceImpl which already @Autowired PersonRepository
+//    PersonRepository personRepository;
 
     @GetMapping("/get/all")
+//    public List<Person> getAllPersons(){
+//        return (List<Person>) personRepository.findAll();
+//    }
     public List<Person> getAllPersons(){
-        return (List<Person>) personRepository.findAll();
+        return personService.getAllPersons();
     }
 
     //Bellow we are utilizing a path variable
     //this allows us to generate unique urls for unique resources
     @GetMapping("/get/{id}")
+//    public Person getPersonById(@PathVariable Long id){
+//        return personRepository.findById(id).orElseThrow();
+//    }
     public Person getPersonById(@PathVariable Long id){
-        return personRepository.findById(id).orElseThrow();
+        return personService.getPersonById(id);
     }
 
     // Using this example URl ** http://localhost:8080/person/get/personById?id=3 **
     // You can get the all the data of object with ID 3
     @GetMapping("get/personById")
     public Optional<Person> getPersons (@RequestParam Long id){
-        return personRepository.findById(id);
+//        return personRepository.findById(id);
+        return Optional.ofNullable(personService.getPersonById(id));
     }
+
 
     //-------------------------------------------------------------------------------------------------------
     // BELOW WE ARE UTILIZING REQUEST PARAMETERS WHICH ALLOWS US TO PERFORM SEARCHES IN A STANDARDIZED FASHION
@@ -44,14 +57,17 @@ public class PersonController {
     // You can also use this URL with commas to separate ID values ** http://localhost:8080/person/get/persons?id=1,2,3 **
     @GetMapping("get/persons")
     public Iterable<Person> getPersons (@RequestParam List<Long> id){
-        return personRepository.findAllById(id);
+//        return personRepository.findAllById(id);
+        return personService.getAllById(id);
     }
+
 
     // Using this example URL ** http://localhost:8080/person/search?firstName=Donald **
     // you can get all the data of an object identified by firstname
     @GetMapping("/search")
     public Iterable<Person> searchPersonByName(@RequestParam String firstName){
-        return personRepository.findAllByFirstName(firstName);
+//        return personRepository.findAllByFirstName(firstName);
+        return personService.getPersonByFirstName(firstName);
     }
 
 
