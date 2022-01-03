@@ -27,9 +27,19 @@ public class PersonController {
         return personRepository.findById(id).orElseThrow();
     }
 
-    @GetMapping("get/persons")
+    // Using this example URl ** http://localhost:8080/person/get/personById?id=3 **
+    // You can get the all the data of object with ID 3
+    @GetMapping("get/personById")
     public Optional<Person> getPersons (@RequestParam Long id){
         return personRepository.findById(id);
+    }
+
+    // Using this example URL ** http://localhost:8080/person/get/persons?id=1&id=3 **
+    // You can get the all the data of objects with IDs 1 and 3
+    // You can also use this URL with commas to separate ID values ** http://localhost:8080/person/get/persons?id=1,2,3 **
+    @GetMapping("get/persons")
+    public Iterable<Person> getPersons (@RequestParam List<Long> id){
+        return personRepository.findAllById(id);
     }
 
 }
