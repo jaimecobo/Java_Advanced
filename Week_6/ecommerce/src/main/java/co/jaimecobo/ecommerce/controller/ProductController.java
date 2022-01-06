@@ -1,6 +1,7 @@
 package co.jaimecobo.ecommerce.controller;
 
 import co.jaimecobo.ecommerce.model.Product;
+import co.jaimecobo.ecommerce.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping("/product/{id}")
-    public String show(@PathVariable int id, Model model){
+    public String show(@PathVariable long id, Model model){
         Product product = productService.findById(id);
         model.addAttribute(product);
         return "product";
