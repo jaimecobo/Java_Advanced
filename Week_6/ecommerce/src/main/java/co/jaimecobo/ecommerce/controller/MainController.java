@@ -1,6 +1,7 @@
 package co.jaimecobo.ecommerce.controller;
 
 import co.jaimecobo.ecommerce.model.Product;
+import co.jaimecobo.ecommerce.service.ProductService;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
