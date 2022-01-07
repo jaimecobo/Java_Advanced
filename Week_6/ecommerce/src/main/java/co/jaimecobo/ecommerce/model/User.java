@@ -26,6 +26,7 @@ public class User implements UserDetails {
 
     @length(min=8, message="Your password must be at least 8 characters long.")
     @Pattern(regexp = "[^\\s]+", message = "Your password can't have any space")
+    //TODO(): Add constrains for password
     private String password;
 
     @ElementCollection
