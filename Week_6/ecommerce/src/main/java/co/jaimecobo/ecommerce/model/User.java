@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.util.Collection;
 import java.util.Map;
 
@@ -22,6 +23,9 @@ public class User implements UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String username;
+
+    @length(min=8, message="Your password must be at least 8 characters long.")
+    @Pattern(regexp = "[^\\s]+", message = "Your password can't have any space")
     private String password;
 
     @ElementCollection
