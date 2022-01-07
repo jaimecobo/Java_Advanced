@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments :: head"></head>
+<head th:replace="fragments/fragments :: head"></head>
 <head><link href="https://getbootstrap.com/docs/4.0/examples/signin/signin.css" rel="stylesheet" crossorigin="anonymous"></head>
 <body style="padding: 0">
-<div th:replace="fragments :: navbar" ></div>
+<div th:replace="fragments/fragments :: navbar" ></div>
 
 <main role="main">
     <div class="container">
@@ -13,6 +13,10 @@
                 <label for="username" class="sr-only">Username</label>
                 <input type="text" id="username" name="username" class="form-control" placeholder="Username">
             </p>
+<!--            <div align="center" th:if="${param.error}">-->
+<!--            <div align="center" th:if="${#fields.hasErrors('password}">-->
+<!--                <h4 style="color: red">Login unsuccessful!</h4>-->
+<!--            </div>-->
             <p>
                 <label for="password" class="sr-only">Password</label>
                 <input type="password" id="password" name="password" class="form-control" placeholder="Password">
@@ -25,7 +29,7 @@
     </div>
 </main>
 
-<div th:replace="fragments :: footer"></div>
+<div th:replace="fragments/fragments :: footer"></div>
 </body>
 </html>
 
