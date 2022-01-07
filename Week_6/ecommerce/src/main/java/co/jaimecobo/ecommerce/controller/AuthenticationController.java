@@ -31,6 +31,9 @@ public class AuthenticationController {
                          HttpServletRequest request ) throws ServletException {
         String password = user.getPassword();
         if (submit.equals("up")) {
+//            if (bindingResult.hasErrors()){
+//                System.out.println("an error occured");
+//            }
             if (userService.findByUsername(user.getUsername()) == null) {
                 userService.saveNew(user);
             } else {
