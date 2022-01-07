@@ -37,11 +37,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeHttpRequests()
                 .antMatchers("/cart")
                 .authenticated()
-                .and().formLogin()
+                .antMatchers("/h2-console/**")
+                .permitAll()
+                .and()
+                .formLogin()
                 .loginPage("/signin")
                 .loginProcessingUrl("/login")
-                .and().logout()
+                .and()
+                .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/signout"))
                 .logoutSuccessUrl("/");
+
+        //The two lines of code bellow are needed to be able to access the in memory database
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
+
     }
 }
